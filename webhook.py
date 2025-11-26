@@ -14,7 +14,7 @@ def alert():
     message_text = f"Alerta recibida: {data}"
 
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {"chat_id": str(CHAT_ID), "text": message_text}
+    payload = {"chat_id": CHAT_ID, "text": message_text}
     r = requests.post(url, json=payload)
 
     # Este return debe estar dentro de la función
