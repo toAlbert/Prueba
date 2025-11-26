@@ -1,27 +1,28 @@
+import os
 from flask import Flask, request
 import requests
 
-TOKEN = "7933621950:AAEMx0oUWK27zx9NDrYyvRGHhimemAh5pic"
-CHAT_ID = "6873763875"
-TELEGRAM_URL = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-
 app = Flask(__name__)
 
-@app.route('/alert', methods=['POST'])
+TOKEN = os.getenv("7933621950:AAEMx0oUWK27zx9NDrYyvRGHhimemAh5pic")
+CHAT_ID =  os.getenv("6873763875")
+
+
+
+@app.post("/alert")
 def alert():
-    data = request.get_json(force=True)
+    data = request.json
 
-    symbol = data.get("symbol", "NA")
-    price  = data.get("price", "NA")
-    time   = data.get("time", "NA")
+    # Mensaje simple (puede ser dinámico según lo que envíe TradingView)
+    message = f"🚨 Alerta recibida:\n\n{data}"
 
-    message = f"📈 Alerta desde TradingView\n\nSímbolo: {symbol}\nPrecio: {price}\nHora: {time}"
-
-    requests.post(TELEGRAM_URL, data={
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    payload = {
         "chat_id": CHAT_ID,
         "text": message
-    })
-    
-    return "OK", 200
+    }
 
-app.run(host="0.0.0.0", port=80)
+    # Enviar a Telegram
+    r = requests.post(url, json=payload)
+
+    return jsonify({"status": "ok", "telegram_status": r.status_code})
