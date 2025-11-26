@@ -26,7 +26,8 @@ def alert():
         }
     )
 
-    return jsonify({
-        "status": "ok",
-        "telegram_status": r.status_code
-    })
+return jsonify({
+    "status": "ok",
+    "telegram_status": r.status_code,
+    "telegram_response": r.text
+})
