@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-TELEGRAM_TOKEN = os.getenv("7933621950:AAEMx0oUWK27zx9NDrYyvRGHhimemAh5pic")
+TELEGRAM_TOKEN = os.getenv("8043571009:AAEpvETQ8IKjrH1ouGXPr0l3s6J4uBgHzRc")
 CHAT_ID =  os.getenv("6873763875")
 
 
