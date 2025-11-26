@@ -4,8 +4,8 @@ import requests
 
 app = Flask(name)
 
-TELEGRAM_TOKEN = os.getenv(8043571009:AAEpvETQ8IKjrH1ouGXPr0l3s6J4uBgHzRc)
-CHAT_ID =  os.getenv(6873763875)
+TELEGRAM_TOKEN = os.getenv("8043571009:AAEpvETQ8IKjrH1ouGXPr0l3s6J4uBgHzRc")
+CHAT_ID =  os.getenv("6873763875")
 
 
 @app.route("/", methods=["GET"])
